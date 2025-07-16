@@ -1,27 +1,28 @@
-import request from "supertest"
-import {healthCheckRoute} from "../../../src/shared/routes/health-check-route.js";
-import {describe, it, beforeEach, expect} from "vitest";
 import express from "express";
+import request from "supertest";
+import { beforeEach, describe, expect, it } from "vitest";
 
-describe('Acceptance | Shared | Routes | Health check', () => {
-    let server
+import { healthCheckRoute } from "../../../src/shared/routes/health-check-route.js";
 
-    beforeEach(function() {
-        server = express()
-        server.use(healthCheckRoute)
-    })
+describe("Acceptance | Shared | Routes | Health check", () => {
+  let server;
 
-    describe('GET /health', () => {
-        it('should return 200 http code and message', async () => {
-            // given
-            const message = "API is ok"
+  beforeEach(function() {
+    server = express();
+    server.use(healthCheckRoute);
+  });
 
-            // when
-            const response = await request(server).get('/health')
+  describe("GET /health", () => {
+    it("should return 200 http code and message", async () => {
+      // given
+      const message = "API is ok";
 
-            // then
-            expect(response.statusCode).toBe(200);
-            expect(response.text).to.be.equal(message)
-        });
+      // when
+      const response = await request(server).get("/health");
+
+      // then
+      expect(response.statusCode).toBe(200);
+      expect(response.text).to.be.equal(message);
     });
+  });
 });
