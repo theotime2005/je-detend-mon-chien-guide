@@ -12,9 +12,8 @@
   },
   "license": "GPL-3.0-or-later",
   "author": "Théotime Berthod",
-  "type": "commonjs",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install:api": "cd api && npm ci",
+    "test:api": "cd api && npm t"
   }
 }
