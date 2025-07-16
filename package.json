@@ -14,6 +14,7 @@
   "author": "Théotime Berthod",
   "scripts": {
     "install:api": "cd api && npm ci",
-    "test:api": "cd api && npm t"
+    "test:api": "cd api && npm t",
+    "lint:api": "cd api && npm run lint"
   }
 }
