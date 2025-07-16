@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API de l'application Je détend mon chien guide",
+  "homepage": "https://github.com/theotime2005/je-detend-mon-chien-guide#readme",
+  "bugs": {
+    "url": "https://github.com/theotime2005/je-detend-mon-chien-guide/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theotime2005/je-detend-mon-chien-guide.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Théotime Berthod",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run"
+  }
+}
