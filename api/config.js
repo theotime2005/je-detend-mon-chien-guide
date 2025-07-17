@@ -13,7 +13,9 @@ const configuration = (function() {
   const config = {
     port: _getNumber(process.env.PORT, 3000),
     environment: process.env.NODE_ENV || "development",
-
+    users: {
+      passwordHash: _getNumber(process.env.PASSWORD_HASH, 10),
+    },
   };
 
   if (config.environment === "test") {
