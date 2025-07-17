@@ -15,17 +15,31 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "vitest run",
+    "test": "npm run test:prepare && NODE_ENV=test && vitest run",
+    "test:prepare": "NODE_ENV=test npm run db:prepare",
     "dev": "node index.js --watch",
     "start": "node index.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "db:new-migration": "npx knex --knexfile ./db/knexfile.js  migrate:make --stub $PWD/db/template.js $migrationname",
+    "db:create": "node ./db/create-database.js",
+    "db:delete": "node ./db/drop-database.js",
+    "db:empty": "node ./db/empty-database.js",
+    "db:migrate": "knex --knexfile ./db/knexfile.js  migrate:latest",
+    "db:rollback:latest": "knex --knexfile ./db/knexfile.js  migrate:down",
+    "db:prepare": "npm run db:delete && npm run db:create && npm run db:migrate",
+    "db:seed": "knex --knexfile ./db/knexfile.js seed:run",
+    "db:reset": "npm run db:prepare && npm run db:seed"
   },
   "dependencies": {
     "@eslint/js": "^9.31.0",
+    "dotenv": "^17.2.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-vitest-globals": "^1.5.0",
     "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "lodash": "^4.17.21",
+    "pg": "^8.16.3",
     "supertest": "^7.1.3",
     "vitest": "^3.2.4"
   }
