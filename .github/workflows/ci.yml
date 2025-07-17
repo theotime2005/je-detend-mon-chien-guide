@@ -18,6 +18,14 @@ jobs:
       - name: install dependencies
         run: npm run install:api
 
+
+      - name: start docker
+        run: docker compose up -d
+
+      - name: wait for db
+        run: sleep 5
+        working-directory: ./api
+
       - name: run tests
         run: npm run test:api
 
