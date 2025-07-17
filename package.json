@@ -13,7 +13,9 @@
   "license": "GPL-3.0-or-later",
   "author": "Théotime Berthod",
   "scripts": {
-    "install:api": "cd api && npm ci",
+    "ci:api": "cd api && npm ci",
+    "ci:all": "npm run ci:api",
+    "configure": "sh ./scripts/configure.sh",
     "test:api": "cd api && npm t",
     "lint:api": "cd api && npm run lint"
   }
