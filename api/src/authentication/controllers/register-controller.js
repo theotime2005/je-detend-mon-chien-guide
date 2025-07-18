@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-import { ERRORS } from "../../shared/constants.js";
+import { ERRORS, USER_TYPES } from "../../shared/constants.js";
 import * as registerRepository from "../repositories/register.repository.js";
 import { createPassword } from "../services/password.service.js";
 
@@ -9,6 +9,7 @@ const createUserSchema = Joi.object({
   lastname: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
+  userType: Joi.string().required().valid(...Object.values(USER_TYPES)),
 });
 
 export async function createUser(req, res) {
@@ -20,13 +21,14 @@ export async function createUser(req, res) {
     });
   }
   try {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password, userType } = req.body;
     const hashedPassword = await createPassword(password);
     await registerRepository.createUser({
       firstname,
       lastname,
       email,
       hashedPassword,
+      userType,
     });
     return res.status(201).json({
       message: "User created successfully",

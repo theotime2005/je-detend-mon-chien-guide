@@ -2,7 +2,7 @@ import { knex } from "../../../db/knex-database-connection.js";
 
 const TABLE_NAME = "users";
 
-async function createUser({ firstname, lastname, email, hashedPassword }) {
+async function createUser({ firstname, lastname, email, hashedPassword, userType }) {
   const existingUser = await knex(TABLE_NAME).where({ email });
   if (existingUser.length) {
     throw new Error("this email is already in database");
@@ -12,6 +12,7 @@ async function createUser({ firstname, lastname, email, hashedPassword }) {
     lastname,
     email,
     hashedPassword,
+    userType,
     created_at: new Date(),
     updated_at: new Date(),
   }).returning("id");
