@@ -1,18 +1,13 @@
-import express from "express";
 import request from "supertest";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { knex } from "../../../db/knex-database-connection.js";
-import { registerRoute } from "../../../src/authentication/routes/register-route.js";
+import server from "../../../server.js";
 import { ERRORS } from "../../../src/shared/constants.js";
 
 describe("Acceptance | Authentication | Register", () => {
-  let server;
 
   beforeEach(async function() {
-    server = express();
-    server.use(express.json());
-    server.use(registerRoute);
     await knex("users").del();
   });
 
