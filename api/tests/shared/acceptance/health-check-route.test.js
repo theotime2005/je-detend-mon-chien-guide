@@ -15,7 +15,7 @@ describe("Acceptance | Shared | Routes | Health check", () => {
 
       // then
       expect(response.statusCode).toBe(200);
-      expect(response.text).to.be.equal(message);
+      expect(response.text).toBe(message);
     });
   });
 });

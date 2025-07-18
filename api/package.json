@@ -15,7 +15,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:prepare && NODE_ENV=test && vitest run",
+    "test": "npm run test:prepare && NODE_ENV=test vitest run",
     "test:prepare": "NODE_ENV=test npm run db:prepare",
     "dev": "node index.js --watch",
     "start": "node index.js",
