@@ -3,4 +3,9 @@ const ERRORS = {
   REQUIRED_BODY: "Required body",
 };
 
-export { ERRORS };
+const USER_TYPES = {
+  MASTER_GUIDE_DOG: "master_guide_dog",
+  COMPANION: "companion",
+};
+
+export { ERRORS, USER_TYPES };
