@@ -8,10 +8,13 @@ async function buildUser({
   lastname = "Doe",
   email = "john.doe@example.net",
   password = "password",
+  hashedPassword = null,
   userType = USER_TYPES.MASTER_GUIDE_DOG,
   lastLoggedAt = null,
 } = {}) {
-  const hashedPassword = await createPassword(password);
+  if (!hashedPassword) {
+    hashedPassword = await createPassword(password);
+  }
   const [values] = await knex("users").insert({
     firstname,
     lastname,
