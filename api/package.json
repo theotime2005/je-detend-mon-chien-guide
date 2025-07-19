@@ -17,7 +17,7 @@
   "scripts": {
     "test": "npm run test:prepare && NODE_ENV=test vitest run",
     "test:prepare": "NODE_ENV=test npm run db:prepare",
-    "dev": "node index.js --watch",
+    "dev": "nodemon index.js",
     "start": "node index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
