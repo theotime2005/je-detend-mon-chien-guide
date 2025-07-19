@@ -1,4 +1,4 @@
-import { afterAll, beforeEach } from "vitest";
+import { afterAll, afterEach, beforeEach, vi } from "vitest";
 
 import { knex } from "../db/knex-database-connection.js";
 
@@ -9,6 +9,10 @@ beforeEach(async () => {
   for (const { tablename } of tables) {
     await knex(tablename).truncate();
   }
+});
+
+afterEach(function() {
+  vi.restoreAllMocks();
 });
 
 afterAll(async () => {
