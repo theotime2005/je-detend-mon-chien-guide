@@ -1,6 +1,7 @@
 import Joi from "joi";
 
-import { ERRORS, USER_TYPES } from "../../shared/constants.js";
+import { USER_TYPES } from "../../shared/constants.js";
+import { checkSchema } from "../../shared/middlewares/checkSchema.js";
 import * as registerRepository from "../repositories/register.repository.js";
 import { createPassword } from "../services/password.service.js";
 
@@ -13,13 +14,7 @@ const createUserSchema = Joi.object({
 });
 
 export async function createUser(req, res) {
-  const { error } = createUserSchema.validate(req.body);
-  if (error) {
-    return res.status(400).json({
-      message: error.details[0].message,
-      code: ERRORS.INVALID_DATA_FORMAT,
-    });
-  }
+  if (!(await checkSchema(req, res, createUserSchema))) return;
   try {
     const { firstname, lastname, email, password, userType } = req.body;
     const hashedPassword = await createPassword(password);
