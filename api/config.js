@@ -16,6 +16,10 @@ const configuration = (function() {
     users: {
       passwordHash: _getNumber(process.env.PASSWORD_HASH, 10),
     },
+    jwt: {
+      tokenSecret: process.env.TOKEN_SECRET,
+      expirationTime: process.env.TOKEN_EXPIRATION,
+    },
   };
 
   if (config.environment === "test") {
