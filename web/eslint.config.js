@@ -1,16 +1,17 @@
 import js from "@eslint/js";
+import pluginVitest from "@vitest/eslint-plugin";
 import { defineConfig } from "eslint/config";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
-import vitestGlobals from "eslint-plugin-vitest-globals";
+import pluginVue from "eslint-plugin-vue";
 import globals from "globals";
 
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs}"],
+    name: "app/files-to-lint",
+    files: ["**/*.{js,mjs,jsx,vue}"],
     plugins: {
       "simple-import-sort": simpleImportSort,
     },
-    extends: [js.configs.recommended],
     rules: {
       semi: ["error", "always"],
       quotes: ["error", "double"],
@@ -50,21 +51,22 @@ export default defineConfig([
       "no-multi-spaces": ["error"],
       "func-style": ["error", "declaration", { allowArrowFunctions: false }],
     },
+  },
+
+  {
     languageOptions: {
       globals: {
+        ...globals.browser,
         ...globals.node,
       },
     },
   },
+
+  js.configs.recommended,
+  ...pluginVue.configs["flat/essential"],
+
   {
-    files: ["./tests/**/*_test.{js,mjs,cjs}"],
-    languageOptions: {
-      globals: {
-        ...vitestGlobals,
-      },
-    },
-  },
-  {
-    ignores: ["./dist/*"],
+    ...pluginVitest.configs.recommended,
+    files: ["src/**/__tests__/*"],
   },
 ]);

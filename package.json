@@ -14,9 +14,20 @@
   "author": "Théotime Berthod",
   "scripts": {
     "ci:api": "cd api && npm ci",
-    "ci:all": "npm run ci:api",
+    "ci:web": "cd web && npm ci",
+    "ci:all": "run-p --print-label ci:api ci:web",
     "configure": "sh ./scripts/configure.sh",
+    "dev:api": "cd api && npm run dev",
+    "dev:web": "cd web && npm run dev",
+    "dev": "run-p --print-label dev:api dev:web",
     "test:api": "cd api && npm t",
-    "lint:api": "cd api && npm run lint"
+    "test:web": "cd web && npm t",
+    "test": "run-p --print-label test:api test:web",
+    "lint:api": "cd api && npm run lint",
+    "lint:web": "cd web && npm run lint",
+    "lint": "run-p --print-label lint:api lint:web"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }
