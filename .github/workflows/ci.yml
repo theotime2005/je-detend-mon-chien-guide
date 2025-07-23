@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'
 
       - name: setup docker
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: configure project
         run: |
