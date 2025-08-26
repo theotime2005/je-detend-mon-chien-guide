@@ -16,7 +16,7 @@
   "dependencies": {
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "pinia": "^3.0.3",
-    "vue": "^3.5.17",
+    "vue": "^3.5.20",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
