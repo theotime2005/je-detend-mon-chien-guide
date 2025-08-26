@@ -10,6 +10,8 @@ async function buildUser({
   password = "password",
   hashedPassword = null,
   userType = USER_TYPES.MASTER_GUIDE_DOG,
+  isActive = true,
+  shouldChangePassword = false,
   lastLoggedAt = null,
 } = {}) {
   if (!hashedPassword) {
@@ -22,6 +24,8 @@ async function buildUser({
     hashedPassword,
     userType,
     lastLoggedAt,
+    isActive,
+    shouldChangePassword,
   }).returning("*");
 
   return values;

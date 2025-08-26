@@ -11,6 +11,7 @@ async function createUserWithMasterType() {
     email: "user.master@example.net",
     hashedPassword,
     userType: USER_TYPES.MASTER_GUIDE_DOG,
+    isActive: true,
   });
 }
 
@@ -21,6 +22,28 @@ async function createUserWithCompanionType() {
     email: "user.companion@example.net",
     hashedPassword,
     userType: USER_TYPES.COMPANION,
+    isActive: true,
+  });
+}
+
+async function createUserNotActive() {
+  await databaseBuilder.factory.buildUser({
+    firstname: "User",
+    lastname: "NotActive",
+    email: "user.notactive@example.net",
+    hashedPassword,
+    isActive: false,
+  });
+}
+
+async function createUserWithShouldChangePassword() {
+  await databaseBuilder.factory.buildUser({
+    firstname: "User",
+    lastname: "ShouldChangePassword",
+    email: "user.shouldchangepassword@example.net",
+    hashedPassword,
+    shouldChangePassword: true,
+    isActive: true,
   });
 }
 
@@ -28,6 +51,8 @@ async function seed() {
   console.log("seeding users...");
   await createUserWithCompanionType();
   await createUserWithMasterType();
+  await createUserNotActive();
+  await createUserWithShouldChangePassword();
 }
 
 export { seed };

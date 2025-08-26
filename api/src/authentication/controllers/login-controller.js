@@ -14,7 +14,7 @@ async function loginController(req, res) {
   if (!(await checkSchema(req, res, loginSchema))) return;
   try {
     const foundUser = await loginRepository.findUserByEmail(req.body.email);
-    if (!(await checkPassword(req.body.password, foundUser.hashedPassword))) {
+    if (!(await checkPassword(req.body.password, foundUser.hashedPassword)) || !foundUser.isActive) {
       throw new Error("Invalid credentials");
     }
     await loginRepository.updateLastLoggedAt(foundUser.id);
