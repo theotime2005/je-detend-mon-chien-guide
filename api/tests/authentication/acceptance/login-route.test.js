@@ -69,6 +69,29 @@ describe("Acceptance |  Authentication | Route | login", () => {
         expect(response.statusCode).toBe(401);
         expect(response.body.error.message).toEqual("Invalid credentials");
       });
+
+      it("should return 401 when user is not active", async () => {
+        // given
+        await databaseBuilder.factory.buildUser({
+          email: "mysuperemail@example.net",
+          password: "helloworld",
+          isActive: false,
+        });
+
+        const body = {
+          email: "mysuperemail@example.net",
+          password: "password",
+        };
+
+        // when
+        const response = await request(server)
+          .post("/api/authentication/login")
+          .send(body);
+
+        // then
+        expect(response.statusCode).toBe(401);
+        expect(response.body.error.message).toEqual("Invalid credentials");
+      });
     });
   });
 });
