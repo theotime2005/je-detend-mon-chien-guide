@@ -9,5 +9,6 @@ export default defineConfig({
         singleFork: true,
       },
     },
+    reporters: process.env.GITHUB_ACTIONS ? ["dot", "github-actions"] : ["dot"],
   },
 });
