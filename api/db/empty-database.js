@@ -1,18 +1,19 @@
 import process from "node:process";
 
+import { logger } from "../src/shared/logger.js";
 import { disconnect, emptyAllTablesOfDatabase } from "./knex-database-connections.js";
 
 async function main() {
-  console.log("Emptying all tables...");
+  logger.info("Emptying all tables...");
   await emptyAllTablesOfDatabase();
-  console.log("Done!");
+  logger.info("Done!");
 }
 
 (async () => {
   try {
     await main();
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     process.exit(1);
   } finally {
     await disconnect();

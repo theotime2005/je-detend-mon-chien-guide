@@ -2,6 +2,7 @@ import { env } from "node:process";
 
 import dotenv from "dotenv";
 
+import { logger } from "../src/shared/logger.js";
 import { PGSQL_NON_EXISTENT_DATABASE_ERROR } from "./pg-errors.js";
 import { PgClient } from "./PgClient.js";
 
@@ -19,13 +20,13 @@ PgClient.getClient(url.href).then(async (client) => {
   try {
     const WITH_FORCE = _withForceOption();
     await client.query_and_log(`DROP DATABASE ${DB_TO_DELETE_NAME}${WITH_FORCE};`);
-    console.log("Database dropped");
+    logger.info("Database dropped");
     await client.end();
   } catch (error) {
     if (error.code === PGSQL_NON_EXISTENT_DATABASE_ERROR) {
-      console.log(`Database ${DB_TO_DELETE_NAME} does not exist`);
+      logger.info(`Database ${DB_TO_DELETE_NAME} does not exist`);
     } else {
-      console.error(`Database drop failed: ${error.detail}`);
+      logger.error(`Database drop failed: ${error.detail}`);
     }
   } finally {
     await client.end();

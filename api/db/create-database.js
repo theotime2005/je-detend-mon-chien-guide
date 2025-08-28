@@ -2,6 +2,7 @@ import { env } from "node:process";
 
 import dotenv from "dotenv";
 
+import { logger } from "../src/shared/logger.js";
 import { PGSQL_DUPLICATE_DATABASE_ERROR } from "./pg-errors.js";
 import { PgClient } from "./PgClient.js";
 
@@ -17,13 +18,13 @@ url.pathname = "/postgres";
 PgClient.getClient(url.href).then(async (client) => {
   try {
     await client.query_and_log(`CREATE DATABASE ${DB_TO_CREATE_NAME};`);
-    console.log("Database created");
+    logger.info("Database created");
     await client.end();
   } catch (error) {
     if (error.code === PGSQL_DUPLICATE_DATABASE_ERROR) {
-      console.log(`Database ${DB_TO_CREATE_NAME} already created`);
+      logger.info(`Database ${DB_TO_CREATE_NAME} already created`);
     } else {
-      console.error(`Database creation failed: ${error.detail}`);
+      logger.error(`Database creation failed: ${error.detail}`);
     }
   } finally {
     await client.end();
