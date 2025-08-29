@@ -1,5 +1,5 @@
 <script setup>
-import packageInfo from "../../package.json";
+import packageInfo from "../../../package.json";
 </script>
 
 <template>

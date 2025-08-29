@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, it, vi } from "vitest";
 
-import packageInfo from "../../../../package.json";
+import packageInfo from "../../../../../package.json";
 import FooterComponent from "../../../components/FooterComponent.vue";
 
 describe("FooterComponent component", () => {

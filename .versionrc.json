@@ -1,0 +1,52 @@
+{
+  "types": [
+    {
+      "type": "breaking",
+      "section": "💥 Breaking changes"
+    },
+    {
+      "type": "feat",
+      "section": "🚀 New features"
+    },
+    {
+      "type": "fix",
+      "section": "🐛 Bug fixes"
+    },
+    {
+      "type": "chore",
+      "section": "🔧 Chore"
+    },
+    {
+      "type": "docs",
+      "section": "📚 Documentation"
+    },
+    {
+      "type": "style",
+      "section": "💅 Styles"
+    },
+    {
+      "type": "refactor",
+      "section": "🔨 Refactor"
+    },
+    {
+      "type": "perf",
+      "section": "⚡ Performance"
+    },
+    {
+      "type": "test",
+      "section": "🧪 Tests"
+    },
+    {
+      "type": "bump",
+      "section": "🔖 Version bump"
+    },
+    {
+      "type": "tech",
+      "section": "🛠️ Tech"
+    },
+    {
+      "type": "revert",
+      "section": "⏪ Revert"
+    }
+  ]
+}
