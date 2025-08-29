@@ -9,4 +9,8 @@ const USER_TYPES = {
   },
 };
 
-export { USER_TYPES };
+const STORAGE_VARIABLES = {
+  token: "JE_DETEND_MON_CHIEN_GUIDE_TOKEN",
+};
+
+export { STORAGE_VARIABLES, USER_TYPES };
