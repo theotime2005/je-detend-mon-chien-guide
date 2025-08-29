@@ -9,6 +9,15 @@ const routes = [
     },
   },
   {
+    name: "Connexion",
+    path: "/authentication/login",
+    component: () => import("@/views/authentication/LoginView.vue"),
+    meta: {
+      display: "unlogged",
+      navbar: true,
+    },
+  },
+  {
     path: "/authentication/register",
     name: "Inscription",
     component: () => import("@/views/authentication/RegisterView.vue"),

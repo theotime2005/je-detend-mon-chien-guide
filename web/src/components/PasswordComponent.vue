@@ -39,7 +39,7 @@ watch(password, (newValue) => {
 
 <template>
   <label :for="props.passwordId">{{props.label}}</label>
-  <input :id="props.passwordId" v-model="password" :type="showPassword ? 'text' : 'password'">
+  <input :id="props.passwordId" v-model="password" :type="showPassword ? 'text' : 'password'" required>
   <button type="button" @click="togglePassword">{{showPassword ? 'Masquer' : 'Afficher'}} le mot de passe</button>
 </template>
 

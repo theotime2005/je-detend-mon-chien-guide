@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as authentication from "@/adapters/authentication.js";
-import { USER_TYPES } from "@/constants.js";
+import { STORAGE_VARIABLES, USER_TYPES } from "@/constants.js";
 
 describe("Unit |  Adapters | Authentication", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe("#register", () => {
+  describe("#registerUser", () => {
     it("should return true if server returns 200", async () => {
       // given
       const user = {
@@ -65,6 +65,70 @@ describe("Unit |  Adapters | Authentication", () => {
 
       // then
       expect(resultPromise).toBe(false);
+    });
+  });
+
+  describe("#loginUser", () => {
+    beforeEach(() => {
+      localStorage.clear();
+    });
+    it("should save token in localStorage", async () => {
+      // given
+      const user = {
+        email: "john.doe@example.net",
+        password: "password123",
+      };
+      vi.spyOn(global, "fetch").mockResolvedValue({
+        status: 200,
+        json: vi.fn().mockResolvedValue({
+          data: {
+            userId: 1,
+            token: "abc123",
+          },
+        }),
+      });
+
+      // when
+      const result = await authentication.loginUser(user);
+
+      // then
+      expect(result).toBe(true);
+      const token = localStorage.getItem(STORAGE_VARIABLES.token);
+      expect(token).toBe("abc123");
+    });
+
+    it("should return message when invalid credentials", async () => {
+      // given
+      const user = {
+        email: "john.doe@example.net",
+        password: "password123",
+      };
+      vi.spyOn(global, "fetch").mockResolvedValue({
+        status: 401,
+      });
+
+      // when
+      const result = await authentication.loginUser(user);
+
+      // then
+      expect(result).toBe("Email ou mot de passe incorrect.");
+      const token = localStorage.getItem(STORAGE_VARIABLES.token);
+      expect(token).toBeNull();
+    });
+
+    it("should return message if an error occured", async () => {
+      // given
+      const user = {
+        email: "john.doe@example.net",
+        password: "password123",
+      };
+      vi.spyOn(global, "fetch").mockRejectedValue(new Error("Network error"));
+
+      // when
+      const result = await authentication.loginUser(user);
+
+      // then
+      expect(result).toBe("Une erreur est survenue");
     });
   });
 });
