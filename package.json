@@ -26,10 +26,12 @@
     "lint:api": "cd api && npm run lint",
     "lint:web": "cd web && npm run lint",
     "lint": "run-p --print-label lint:api lint:web",
+    "prepare": "husky",
     "release": "commit-and-tag-version"
   },
   "dependencies": {
     "commit-and-tag-version": "^12.6.0",
+    "husky": "^9.1.7",
     "npm-run-all": "^4.1.5"
   }
 }
