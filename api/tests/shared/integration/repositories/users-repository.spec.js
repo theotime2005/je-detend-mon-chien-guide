@@ -4,7 +4,7 @@ import { databaseBuilder } from "../../../../db/database-builder/index.js";
 import * as usersRepository from "../../../../src/shared/repositories/users-repository.js";
 
 describe("Integration | Shared | Repositories | Users Repository", () => {
-  it("should return user informations when exists", async () => {
+  it("should return user information when exists", async () => {
     // given
     const userCreated = await databaseBuilder.factory.buildUser();
 
