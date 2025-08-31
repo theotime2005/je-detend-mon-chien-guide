@@ -4,6 +4,7 @@ import path from "path";
 
 import authentication from "./src/authentication/routes.js";
 import { healthCheckRoute } from "./src/shared/routes/health-check-route.js";
+import userRoute from "./src/shared/routes/user-route.js";
 
 const server = express();
 
@@ -12,5 +13,6 @@ server.use(express.json());
 server.use(express.static(path.join(process.cwd(), "dist")));
 server.use(healthCheckRoute);
 server.use(authentication);
+server.use(userRoute);
 
 export default server;
