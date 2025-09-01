@@ -23,7 +23,6 @@ async function handleLogin() {
     email: email.value,
     password: password.value,
   });
-  console.log(authenticate);
   if (authenticate === true) {
     router.push("/");
   } else if (typeof authenticate === "string") {
