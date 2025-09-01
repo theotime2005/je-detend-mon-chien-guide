@@ -14,6 +14,7 @@ export default mergeConfig(
     test: {
       globals: true,
       environment: "jsdom",
+      setupFiles: "src/tests/test.setup.js",
       exclude: [...configDefaults.exclude, "e2e/**"],
       root: fileURLToPath(new URL("./", import.meta.url)),
       reporters: process.env.GITHUB_ACTIONS ? ["dot", "github-actions"] : ["dot"],
