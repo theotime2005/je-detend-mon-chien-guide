@@ -37,6 +37,16 @@ const configuration = (function() {
       tokenSecret: process.env.TOKEN_SECRET,
       expirationTime: process.env.TOKEN_EXPIRATION,
     },
+    email: {
+      enabled: toBoolean(process.env.MAILING_ENABLED),
+      service: process.env.MAILING_SERVICE,
+      port: _getNumber(process.env.MAILING_PORT, 587),
+      secure: toBoolean(process.env.MAILING_SECURE),
+      auth: {
+        user: process.env.MAILING_USER,
+        pass: process.env.MAILING_PASSWORD,
+      },
+    },
   };
 
   if (config.environment === "test") {
