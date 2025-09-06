@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { databaseBuilder } from "../../../../db/database-builder/index.js";
 import { knex } from "../../../../db/knex-database-connection.js";
 import * as registerRepository from "../../../../src/authentication/repositories/register.repository.js";
 import { USER_TYPES } from "../../../../src/shared/constants.js";
@@ -44,6 +45,24 @@ describe("Integration | Authentication | Repository | Register", () => {
 
       // then
       await expect(promise).rejects.toThrow(new Error("this email is already in database"));
+    });
+  });
+
+  describe("#activateUserByUserId", () => {
+    it("should update isActive column", async () => {
+      // given
+      const userWithNoChange = await databaseBuilder.factory.buildUser({ email: "no-change@example.net", isActive: false });
+      const userToChange = await databaseBuilder.factory.buildUser({ email: "change@example.net", isActive: false });
+
+      // when
+      await registerRepository.activateUserByUserId(userToChange.id);
+
+      // then
+      const userWithNoChangeFromDb = await knex("users").where({ id: userWithNoChange.id }).first();
+      expect(userWithNoChangeFromDb.isActive).toBe(false);
+
+      const userToChangeFromDb = await knex("users").where({ id: userToChange.id }).first();
+      expect(userToChangeFromDb.isActive).toBe(true);
     });
   });
 });

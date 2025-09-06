@@ -19,4 +19,8 @@ async function createUser({ firstname, lastname, email, hashedPassword, userType
   return id;
 }
 
-export { createUser };
+async function activateUserByUserId(userId) {
+  return await knex(TABLE_NAME).where({ id: userId }).update({ isActive: true, updated_at: new Date() });
+}
+
+export { activateUserByUserId, createUser };
