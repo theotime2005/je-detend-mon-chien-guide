@@ -1,11 +1,15 @@
 import * as fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { marked } from "marked";
 
 import { logger } from "../../logger.js";
 
-const MAIL_FOLDER = path.resolve("../../../email-templates");
+const MAIL_FOLDER = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../../../email-templates",
+);
 const FOOTER_FILE_NAME = "footer.md";
 
 function escapeRegExp(string) {
