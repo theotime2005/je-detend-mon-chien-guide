@@ -49,7 +49,7 @@ describe("Unit |  Adapters | Authentication", () => {
       expect(result).toBe(false);
     });
 
-    it("should return false if an error occured", async () => {
+    it("should return false if an error occurred", async () => {
       // given
       const user = {
         firstname: "John",
@@ -65,6 +65,54 @@ describe("Unit |  Adapters | Authentication", () => {
 
       // then
       expect(resultPromise).toBe(false);
+    });
+  });
+
+  describe("#activateUser", () => {
+    it("should return true if request response with 204", async () => {
+      // given
+      const token = "abc123";
+      vi.spyOn(global, "fetch").mockResolvedValue({
+        status: 204,
+      });
+
+      // when
+      const result = await authentication.activateUser(token);
+
+      // then
+      expect(fetch).toHaveBeenCalledWith("/api/authentication/register", {
+        method: "PATCH",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      expect(result).toBe(true);
+    });
+
+    it("should return false if request response code is not 204", async () => {
+      // given
+      const token = "abc123";
+      vi.spyOn(global, "fetch").mockResolvedValue({
+        status: 400,
+      });
+
+      // when
+      const result = await authentication.activateUser(token);
+
+      // then
+      expect(result).toBe(false);
+    });
+
+    it("should return false if an error occurred", async () => {
+      // given
+      const token = "abc123";
+      vi.spyOn(global, "fetch").mockRejectedValue(new Error("Network error"));
+
+      // when
+      const result = await authentication.activateUser(token);
+
+      // then
+      expect(result).toBe(false);
     });
   });
 
@@ -116,7 +164,7 @@ describe("Unit |  Adapters | Authentication", () => {
       expect(token).toBeNull();
     });
 
-    it("should return message if an error occured", async () => {
+    it("should return message if an error occurred", async () => {
       // given
       const user = {
         email: "john.doe@example.net",

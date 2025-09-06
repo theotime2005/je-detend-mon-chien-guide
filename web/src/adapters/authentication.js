@@ -24,6 +24,22 @@ async function registerUser({ firstname, lastname, email, password, userType }) 
   }
 }
 
+async function activateUser(token) {
+  const requestBody = {
+    method: "PATCH",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const request = await fetch(`${BASE_URL}register`, requestBody);
+    return request.status === 204;
+  } catch {
+    return false;
+  }
+}
+
 async function loginUser({ email, password }) {
   const requestBody = {
     method: "POST",
@@ -57,4 +73,4 @@ async function loginUser({ email, password }) {
   }
 }
 
-export { loginUser, registerUser };
+export { activateUser, loginUser, registerUser };
