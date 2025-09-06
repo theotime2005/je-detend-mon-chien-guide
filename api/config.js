@@ -48,11 +48,15 @@ const configuration = (function() {
         pass: process.env.MAILING_PASSWORD,
       },
     },
+    baseUrl: process.env.BASE_URL,
   };
 
   if (config.environment === "test") {
     config.port = 0;
     config.logging.enabled = false;
+    config.email.enabled = false;
+    config.email.testAccount = false;
+    config.baseUrl = "http://localhost/#/";
   }
   return config;
 })();
