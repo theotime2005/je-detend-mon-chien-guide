@@ -27,6 +27,14 @@ const routes = [
     },
   },
   {
+    path: "/authentication/activate",
+    name: "Activation du compte",
+    component: () => import("@/views/authentication/ActivationView.vue"),
+    meta: {
+      navbar: false,
+    },
+  },
+  {
     path: "/about",
     name: "A propos",
     component: () => import("@/views/AboutView.vue"),

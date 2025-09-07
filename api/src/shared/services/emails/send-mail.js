@@ -23,7 +23,7 @@ async function sendMail(req) {
   }
 
   if (!email.enabled) {
-    logger.info("Email disabled. Mail not sent. Mail info:", mailOptions);
+    logger.info(`Email disabled. Mail not sent. Mail info: ${JSON.stringify(mailOptions)}`);
     return {
       info: "Email sending disabled",
       data: mailOptions,
@@ -54,11 +54,11 @@ async function sendMail(req) {
   try {
     const info = await transporter.sendMail(mailOptions);
     if (email.testAccount) {
-      logger.info("Email available on", nodemailer.getTestMessageUrl(info));
+      logger.info(`Email available on ${nodemailer.getTestMessageUrl(info)}`);
     }
     return info;
   } catch (error) {
-    logger.error("Error sending email:", error);
+    logger.error(`Error sending email: ${error}`);
     throw error;
   }
 }

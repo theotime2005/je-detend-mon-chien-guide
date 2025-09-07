@@ -26,6 +26,6 @@ describe("Integration | Shared | Services | Email | Send Mail", () => {
 
     // then
     const url = nodemailer.getTestMessageUrl(result);
-    expect(logger.info).toHaveBeenCalledWith("Email available on", url);
+    expect(logger.info).toHaveBeenCalledWith(`Email available on ${url}`);
   });
 });

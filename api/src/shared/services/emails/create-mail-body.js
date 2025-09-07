@@ -8,7 +8,7 @@ import { logger } from "../../logger.js";
 
 const MAIL_FOLDER = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  "../../../email-templates",
+  "../../../../email-templates",
 );
 const FOOTER_FILE_NAME = "footer.md";
 

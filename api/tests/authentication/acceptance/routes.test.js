@@ -1,16 +1,20 @@
 import request from "supertest";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { databaseBuilder } from "../../../db/database-builder/index.js";
 import { knex } from "../../../db/knex-database-connection.js";
 import server from "../../../server.js";
 import { encodedToken } from "../../../src/authentication/services/token.service.js";
 import { ERRORS, USER_TYPES } from "../../../src/shared/constants.js";
+import * as mailer from "../../../src/shared/services/emails/send-mail.js";
 
 describe("Acceptance | Authentication | Register", () => {
 
   describe("registration", () => {
     describe("POST /api/authentication/register", () => {
+      beforeEach(() => {
+        vi.spyOn(mailer, "sendMail");
+      });
       it("should return 200 http status code", async () => {
         // given
         const body = {
@@ -27,6 +31,7 @@ describe("Acceptance | Authentication | Register", () => {
           .send(body);
 
         // then
+        expect(mailer.sendMail).toHaveBeenCalled();
         expect(response.statusCode).toBe(201);
         const user = await knex("users").where({ email: body.email }).first();
         expect(user).toBeDefined();
