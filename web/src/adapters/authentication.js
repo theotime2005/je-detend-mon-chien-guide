@@ -18,7 +18,7 @@ async function registerUser({ firstname, lastname, email, password, userType }) 
   };
   try {
     const request = await fetch(`${BASE_URL}register`, requestBody);
-    return request.status === 200 ? true : false;
+    return request.status === 201;
   } catch {
     return false;
   }
