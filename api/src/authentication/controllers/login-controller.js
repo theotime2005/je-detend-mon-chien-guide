@@ -1,5 +1,6 @@
 import Joi from "joi";
 
+import { logger } from "../../shared/logger.js";
 import { checkSchema } from "../../shared/middlewares/checkSchema.js";
 import * as loginRepository from "../repositories/login.repository.js";
 import { checkPassword } from "../services/password.service.js";
@@ -36,6 +37,7 @@ async function loginController(req, res) {
         },
       });
     default:
+      logger.error(`Login error: ${err}`);
       return res.status(500).json({
         error: {
           message: "Internal server error",

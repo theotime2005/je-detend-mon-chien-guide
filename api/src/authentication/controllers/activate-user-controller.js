@@ -20,7 +20,7 @@ async function activateUserController(req, res) {
     await activateUserByUserId(user.id);
     return res.status(204).send();
   } catch (error) {
-    logger.error("Error in activateUserController:", error);
+    logger.error(`Error in activateUserController: ${error}`);
     return res.status(500).send({ message: ERRORS.INTERNAL_SERVER_ERROR });
   }
 }
