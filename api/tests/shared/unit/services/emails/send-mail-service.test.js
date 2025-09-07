@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { config } from "../../../../../config.js";
-import { sendMail } from "../../../../../src/shared/services/emails/send-mail.js";
+import { sendMailService } from "../../../../../src/shared/services/emails/send-mail-service.js";
 
 const { email } = config;
 
@@ -26,7 +26,7 @@ describe("Unit | Shared | Services | Send mail", () => {
       };
 
       // when
-      const result = await sendMail(req);
+      const result = await sendMailService(req);
 
       // then
       expect(result).toEqual({
@@ -50,7 +50,7 @@ describe("Unit | Shared | Services | Send mail", () => {
       };
 
       // when
-      const result = await sendMail(req);
+      const result = await sendMailService(req);
 
       // then
       expect(result).toEqual({
@@ -78,7 +78,7 @@ describe("Unit | Shared | Services | Send mail", () => {
       };
 
       // when
-      const result = await sendMail(req);
+      const result = await sendMailService(req);
 
       // then
       expect(nodemailer.createTransport().sendMail).toHaveBeenCalledWith({
@@ -99,7 +99,7 @@ describe("Unit | Shared | Services | Send mail", () => {
       };
 
       // when
-      const result = await sendMail(req);
+      const result = await sendMailService(req);
 
       // then
       expect(nodemailer.createTransport().sendMail).toHaveBeenCalledWith({
@@ -121,7 +121,7 @@ describe("Unit | Shared | Services | Send mail", () => {
       };
 
       // when
-      const promise = sendMail(req);
+      const promise = sendMailService(req);
 
       // then
       await expect(promise).rejects.toBe("Network error");

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { encodedToken } from "../../../../src/authentication/services/token.service.js";
+import { encodedToken } from "../../../../src/authentication/services/token-service.js";
 import { ERRORS } from "../../../../src/shared/constants.js";
 import { checkUserToken } from "../../../../src/shared/middlewares/check-user-token.js";
 

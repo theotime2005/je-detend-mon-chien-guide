@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { databaseBuilder } from "../../../../db/database-builder/index.js";
 import { knex } from "../../../../db/knex-database-connection.js";
-import * as loginRepository from "../../../../src/authentication/repositories/login.repository.js";
+import * as loginRepository from "../../../../src/authentication/repositories/login-repository.js";
 
 describe("Integration | Authentication | Repositories | Login Repository", () => {
   describe("#findUserByEmail", () => {

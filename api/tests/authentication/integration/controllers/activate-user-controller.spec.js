@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { databaseBuilder } from "../../../../db/database-builder/index.js";
 import { knex } from "../../../../db/knex-database-connection.js";
 import { activateUserController } from "../../../../src/authentication/controllers/activate-user-controller.js";
-import { encodedToken } from "../../../../src/authentication/services/token.service.js";
+import { encodedToken } from "../../../../src/authentication/services/token-service.js";
 import { ERRORS } from "../../../../src/shared/constants.js";
 
 describe("Integration | Authentication | Controllers | Activate user controller", () => {

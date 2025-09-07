@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { describe, expect, it, vi } from "vitest";
 
 import { config } from "../../../../config.js";
-import { decodedToken, encodedToken } from "../../../../src/authentication/services/token.service.js";
+import { decodedToken, encodedToken } from "../../../../src/authentication/services/token-service.js";
 
 describe("token.service", () => {
   const payload = { id: 1, email: "test@example.com" };

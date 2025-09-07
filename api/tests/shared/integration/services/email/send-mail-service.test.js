@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { config } from "../../../../../config.js";
 import { logger } from "../../../../../src/shared/logger.js";
-import { sendMail } from "../../../../../src/shared/services/emails/send-mail.js";
+import { sendMailService } from "../../../../../src/shared/services/emails/send-mail-service.js";
 
 describe("Integration | Shared | Services | Email | Send Mail", () => {
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe("Integration | Shared | Services | Email | Send Mail", () => {
     };
 
     // when
-    const result = await sendMail(req);
+    const result = await sendMailService(req);
 
     // then
     const url = nodemailer.getTestMessageUrl(result);

@@ -16,7 +16,7 @@ function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-async function createMailBody(documentName, replaceElements) {
+async function createMailBodyService(documentName, replaceElements) {
   try {
     const documentPath = path.join(MAIL_FOLDER, `${documentName}.md`);
     const footerPath = path.join(MAIL_FOLDER, FOOTER_FILE_NAME);
@@ -43,4 +43,4 @@ async function createMailBody(documentName, replaceElements) {
   }
 }
 
-export { createMailBody };
+export { createMailBodyService };

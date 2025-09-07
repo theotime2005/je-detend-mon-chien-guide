@@ -1,10 +1,10 @@
 import Joi from "joi";
 
 import { logger } from "../../shared/logger.js";
-import { checkSchema } from "../../shared/middlewares/checkSchema.js";
-import * as loginRepository from "../repositories/login.repository.js";
-import { checkPassword } from "../services/password.service.js";
-import { encodedToken } from "../services/token.service.js";
+import { checkSchema } from "../../shared/middlewares/check-schema.js";
+import * as loginRepository from "../repositories/login-repository.js";
+import { checkPassword } from "../services/password-service.js";
+import { encodedToken } from "../services/token-service.js";
 
 const loginSchema = Joi.object({
   email: Joi.string().required().email(),

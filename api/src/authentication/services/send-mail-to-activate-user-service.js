@@ -1,8 +1,8 @@
 import { config } from "../../../config.js";
 import { logger } from "../../shared/logger.js";
-import { createMailBody } from "../../shared/services/emails/create-mail-body.js";
-import { sendMail } from "../../shared/services/emails/send-mail.js";
-import { encodedToken } from "./token.service.js";
+import { createMailBodyService } from "../../shared/services/emails/create-mail-body-service.js";
+import { sendMailService } from "../../shared/services/emails/send-mail-service.js";
+import { encodedToken } from "./token-service.js";
 
 const REGISTER_TEMPLATE = "confirm-register";
 const SUBJECT = "Confirmation d'inscription";
@@ -16,12 +16,12 @@ async function sendMailToActivateUserService({
   try {
     const token = await encodedToken({ userId });
     const activateLink = config.baseUrl + `authentication/activate?token=${token}`;
-    const emailBody = await createMailBody(REGISTER_TEMPLATE, {
+    const emailBody = await createMailBodyService(REGISTER_TEMPLATE, {
       firstname,
       lastname,
       activateLink,
     });
-    await sendMail({
+    await sendMailService({
       to: email,
       subject: SUBJECT,
       html: emailBody,
