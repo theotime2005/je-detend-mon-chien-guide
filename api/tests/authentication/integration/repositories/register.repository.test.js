@@ -38,7 +38,7 @@ describe("Integration | Authentication | Repository | Register", () => {
         hashedPassword: "password123",
         userType: USER_TYPES.MASTER_GUIDE_DOG,
       };
-      await knex("users").insert(existingUser);
+      await databaseBuilder.factory.buildUser(existingUser);
 
       // when
       const promise = registerRepository.createUser(existingUser);

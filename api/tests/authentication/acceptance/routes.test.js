@@ -50,7 +50,7 @@ describe("Acceptance | Authentication | Register", () => {
           hashedPassword: "hashedPassword123",
           userType: USER_TYPES.MASTER_GUIDE_DOG,
         };
-        await knex("users").insert(user);
+        await databaseBuilder.factory.buildUser(user);
 
         const body = {
           firstname: user.firstname,
