@@ -5,7 +5,7 @@ import { logger } from "../../logger.js";
 
 const { email } = config;
 
-async function sendMail(req) {
+async function sendMailService(req) {
   if (!req.to) {
     throw new Error("Recipient email address is required");
   }
@@ -63,4 +63,4 @@ async function sendMail(req) {
   }
 }
 
-export { sendMail };
+export { sendMailService };

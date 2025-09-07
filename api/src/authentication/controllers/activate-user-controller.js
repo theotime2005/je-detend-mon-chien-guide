@@ -1,8 +1,8 @@
 import { ERRORS } from "../../shared/constants.js";
 import { logger } from "../../shared/logger.js";
 import { findUserById } from "../../shared/repositories/users-repository.js";
-import { activateUserByUserId } from "../repositories/register.repository.js";
-import { decodedToken } from "../services/token.service.js";
+import { activateUserByUserId } from "../repositories/register-repository.js";
+import { decodedToken } from "../services/token-service.js";
 
 async function activateUserController(req, res) {
   if (!req.headers.authorization) {
@@ -20,7 +20,7 @@ async function activateUserController(req, res) {
     await activateUserByUserId(user.id);
     return res.status(204).send();
   } catch (error) {
-    logger.error("Error in activateUserController:", error);
+    logger.error(`Error in activateUserController: ${error}`);
     return res.status(500).send({ message: ERRORS.INTERNAL_SERVER_ERROR });
   }
 }

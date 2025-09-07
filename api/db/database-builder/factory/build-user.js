@@ -1,4 +1,4 @@
-import { createPassword } from "../../../src/authentication/services/password.service.js";
+import { createPassword } from "../../../src/authentication/services/password-service.js";
 import { USER_TYPES } from "../../../src/shared/constants.js";
 import { knex } from "../../knex-database-connection.js";
 

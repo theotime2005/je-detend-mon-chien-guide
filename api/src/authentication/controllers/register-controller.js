@@ -1,10 +1,11 @@
 import Joi from "joi";
 
 import { USER_TYPES } from "../../shared/constants.js";
-import { checkSchema } from "../../shared/middlewares/checkSchema.js";
-import * as registerRepository from "../repositories/register.repository.js";
-import { createPassword } from "../services/password.service.js";
-import { sendMailToActivateUserService } from "../services/send-mail-to-activate-user.service.js";
+import { logger } from "../../shared/logger.js";
+import { checkSchema } from "../../shared/middlewares/check-schema.js";
+import * as registerRepository from "../repositories/register-repository.js";
+import { createPassword } from "../services/password-service.js";
+import { sendMailToActivateUserService } from "../services/send-mail-to-activate-user-service.js";
 
 const createUserSchema = Joi.object({
   firstname: Joi.string().required(),
@@ -43,7 +44,7 @@ export async function createUser(req, res) {
         code: "EXISTS",
       });
     default:
-      console.error(err);
+      logger.error(`Error in createUser: ${err}`);
       return res.status(500).json({
         message: "Internal server error",
       });

@@ -2,7 +2,7 @@ import * as fs from "node:fs/promises";
 
 import { describe, expect, it, vi } from "vitest";
 
-import { createMailBody } from "../../../../../src/shared/services/emails/create-mail-body.js";
+import { createMailBodyService } from "../../../../../src/shared/services/emails/create-mail-body-service.js";
 
 vi.mock("node:fs/promises", () => ({
   readFile: vi.fn(),
@@ -18,7 +18,7 @@ describe("Unit | shared | Create mail body", () => {
     const replaceElements = { name: "John" };
 
     // when
-    const result = await createMailBody("test", replaceElements);
+    const result = await createMailBodyService("test", replaceElements);
 
     // then
     expect(result).toContain("Hello John, welcome!");
@@ -32,7 +32,7 @@ describe("Unit | shared | Create mail body", () => {
       .mockResolvedValueOnce("\n-- Footer --");
 
     // when
-    const result = await createMailBody("test");
+    const result = await createMailBodyService("test");
 
     // then
     expect(result).toContain("Simple content");
@@ -44,6 +44,6 @@ describe("Unit | shared | Create mail body", () => {
     fs.readFile.mockRejectedValue(new Error("File not found"));
 
     // when // then
-    await expect(createMailBody("unknown")).rejects.toThrow("File not found");
+    await expect(createMailBodyService("unknown")).rejects.toThrow("File not found");
   });
 });

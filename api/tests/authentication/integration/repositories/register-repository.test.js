@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { databaseBuilder } from "../../../../db/database-builder/index.js";
 import { knex } from "../../../../db/knex-database-connection.js";
-import * as registerRepository from "../../../../src/authentication/repositories/register.repository.js";
+import * as registerRepository from "../../../../src/authentication/repositories/register-repository.js";
 import { USER_TYPES } from "../../../../src/shared/constants.js";
 
 describe("Integration | Authentication | Repository | Register", () => {
@@ -38,7 +38,7 @@ describe("Integration | Authentication | Repository | Register", () => {
         hashedPassword: "password123",
         userType: USER_TYPES.MASTER_GUIDE_DOG,
       };
-      await knex("users").insert(existingUser);
+      await databaseBuilder.factory.buildUser(existingUser);
 
       // when
       const promise = registerRepository.createUser(existingUser);

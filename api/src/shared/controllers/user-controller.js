@@ -1,3 +1,4 @@
+import { logger } from "../logger.js";
 import { findUserById } from "../repositories/users-repository.js";
 
 async function userController(req, res) {
@@ -12,7 +13,8 @@ async function userController(req, res) {
         lastname: user.lastname,
       },
     });
-  } catch {
+  } catch (error) {
+    logger.error(`User error: ${error}`);
     return res.status(500).json({ message: "Internal server error" });
   }
 }
