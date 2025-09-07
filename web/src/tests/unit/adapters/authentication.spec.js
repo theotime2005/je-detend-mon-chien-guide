@@ -19,7 +19,7 @@ describe("Unit |  Adapters | Authentication", () => {
         userType: USER_TYPES.MASTER_GUIDE_DOG.type,
       };
       vi.spyOn(global, "fetch").mockResolvedValue({
-        status: 200,
+        status: 201,
       });
 
       // when

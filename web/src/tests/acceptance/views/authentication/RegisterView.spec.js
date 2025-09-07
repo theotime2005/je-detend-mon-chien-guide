@@ -92,7 +92,7 @@ describe("Acceptance | Views | Authentication | Register View", () => {
     // given
     const passwordCharacters = "JedetenD-123";
     const mockFetch = vi.spyOn(globalThis, "fetch").mockResolvedValue({
-      status: 200,
+      status: 201,
       ok: true,
     });
 
