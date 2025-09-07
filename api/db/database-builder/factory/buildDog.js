@@ -7,7 +7,7 @@ async function buildDog({
 }) {
   const [values] = await knex("dogs").insert({
     name, type, userId,
-  }).return("*");
+  }).returning("*");
 
   return values;
 }
