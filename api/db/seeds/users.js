@@ -15,6 +15,21 @@ async function createUserWithMasterType() {
   });
 }
 
+async function createUserWithDog() {
+  const { id } = await databaseBuilder.factory.buildUser({
+    firstname: "dog",
+    lastname: "master",
+    email: "dog.master@example.net",
+    hashedPassword,
+    lastLoggedAt: new Date(),
+  });
+  await databaseBuilder.factory.buildDog({
+    userId: id,
+    name: "Dogo",
+    type: "Labrador",
+  });
+}
+
 async function createUserWithCompanionType() {
   await databaseBuilder.factory.buildUser({
     firstname: "User",
@@ -51,6 +66,7 @@ async function seed() {
   console.log("seeding users...");
   await createUserWithCompanionType();
   await createUserWithMasterType();
+  await createUserWithDog();
   await createUserNotActive();
   await createUserWithShouldChangePassword();
 }
