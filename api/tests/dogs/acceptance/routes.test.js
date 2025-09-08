@@ -26,4 +26,22 @@ describe("Acceptance | Dogs | Dogs route", () => {
       expect(response.status).toBe(201);
     });
   });
+
+  describe("GET /api/dogs/user", () => {
+    it("should return the dog for userId", async () => {
+      // given
+      const user = await databaseBuilder.factory.buildUser();
+      await databaseBuilder.factory.buildDog({ userId: user.id });
+      const token = await encodedToken({ userId: user.id });
+
+      // when
+      const response = await request(server)
+        .get("/api/dogs/user")
+        .set("Authorization", `Bearer ${token}`);
+
+      // then
+      expect(response.status).toBe(200);
+
+    });
+  });
 });
