@@ -3,6 +3,7 @@ import express from "express";
 import path from "path";
 
 import authentication from "./src/authentication/routes.js";
+import dogs from "./src/dogs/routes.js";
 import { logger } from "./src/shared/logger.js";
 import { healthCheckRoute } from "./src/shared/routes/health-check-route.js";
 import userRoute from "./src/shared/routes/user-route.js";
@@ -21,6 +22,7 @@ server.use((req, res, next) => {
 server.use(healthCheckRoute);
 server.use(authentication);
 server.use(userRoute);
+server.use(dogs);
 
 
 export default server;
