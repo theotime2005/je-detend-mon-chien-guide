@@ -2,7 +2,7 @@ import Joi from "joi";
 
 import { logger } from "../../shared/logger.js";
 import { checkSchema } from "../../shared/middlewares/check-schema.js";
-import * as loginRepository from "../repositories/login-repository.js";
+import { findUserByEmail, updateLastLoggedAt } from "../repositories/users-repository.js";
 import { checkPassword } from "../services/password-service.js";
 import { encodedToken } from "../services/token-service.js";
 
@@ -14,11 +14,11 @@ const loginSchema = Joi.object({
 async function loginController(req, res) {
   if (!(await checkSchema(req, res, loginSchema))) return;
   try {
-    const foundUser = await loginRepository.findUserByEmail(req.body.email);
+    const foundUser = await findUserByEmail(req.body.email);
     if (!(await checkPassword(req.body.password, foundUser.hashedPassword)) || !foundUser.isActive) {
       throw new Error("Invalid credentials");
     }
-    await loginRepository.updateLastLoggedAt(foundUser.id);
+    await updateLastLoggedAt(foundUser.id);
     const token = await encodedToken({
       userId: foundUser.id,
     });

@@ -1,7 +1,6 @@
 import { ERRORS } from "../../shared/constants.js";
 import { logger } from "../../shared/logger.js";
-import { findUserById } from "../../shared/repositories/users-repository.js";
-import { activateUserByUserId } from "../repositories/register-repository.js";
+import { activateUserByUserId, findUserById } from "../repositories/users-repository.js";
 import { decodedToken } from "../services/token-service.js";
 
 async function activateUserController(req, res) {

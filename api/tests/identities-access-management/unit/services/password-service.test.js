@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { checkPassword, createPassword } from "../../../../src/authentication/services/password-service.js";
+import { checkPassword, createPassword } from "../../../../src/identities-access-management/services/password-service.js";
 
 
 describe("password.service", () => {

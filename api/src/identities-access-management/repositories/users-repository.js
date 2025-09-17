@@ -2,6 +2,22 @@ import { knex } from "../../../db/knex-database-connection.js";
 
 const TABLE_NAME = "users";
 
+async function findUserById(userId) {
+  return await knex("users").where({ id: userId }).first() || null;
+}
+
+async function findUserByEmail(email) {
+  const user = await knex("users").where({ email }).first();
+  if (!user) {
+    throw new Error("Invalid credentials");
+  }
+  return user;
+}
+
+async function updateLastLoggedAt(userId) {
+  return knex("users").update({ lastLoggedAt: new Date() }).where({ id: userId });
+}
+
 async function createUser({ firstname, lastname, email, hashedPassword, userType }) {
   const existingUser = await knex(TABLE_NAME).where({ email });
   if (existingUser.length) {
@@ -23,4 +39,4 @@ async function activateUserByUserId(userId) {
   return await knex(TABLE_NAME).where({ id: userId }).update({ isActive: true, updated_at: new Date() });
 }
 
-export { activateUserByUserId, createUser };
+export { activateUserByUserId, createUser, findUserByEmail, findUserById, updateLastLoggedAt };

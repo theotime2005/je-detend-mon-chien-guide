@@ -2,12 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 
 import {
   sendMailToActivateUserService,
-} from "../../../../src/authentication/services/send-mail-to-activate-user-service.js";
-import { encodedToken } from "../../../../src/authentication/services/token-service.js";
+} from "../../../../src/identities-access-management/services/send-mail-to-activate-user-service.js";
+import { encodedToken } from "../../../../src/identities-access-management/services/token-service.js";
 import { createMailBodyService } from "../../../../src/shared/services/emails/create-mail-body-service.js";
 import { sendMailService } from "../../../../src/shared/services/emails/send-mail-service.js";
 
-vi.mock("../../../../src/authentication/services/token-service.js");
+vi.mock("../../../../src/identities-access-management/services/token-service.js");
 vi.mock("../../../../src/shared/services/emails/create-mail-body-service.js");
 vi.mock("../../../../src/shared/services/emails/send-mail-service.js");
 

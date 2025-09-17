@@ -2,8 +2,8 @@ import cors from "cors";
 import express from "express";
 import path from "path";
 
-import authentication from "./src/authentication/routes.js";
 import dogs from "./src/dogs/routes.js";
+import authentication from "./src/identities-access-management/routes.js";
 import { logger } from "./src/shared/logger.js";
 import { healthCheckRoute } from "./src/shared/routes/health-check-route.js";
 import userRoute from "./src/shared/routes/user-route.js";
