@@ -4,9 +4,8 @@ import path from "path";
 
 import dogs from "./src/dogs/routes.js";
 import authentication from "./src/identities-access-management/routes.js";
+import { healthCheckRoute } from "./src/shared/health-check/health-check-route.js";
 import { logger } from "./src/shared/logger.js";
-import { healthCheckRoute } from "./src/shared/routes/health-check-route.js";
-import userRoute from "./src/shared/routes/user-route.js";
 
 const server = express();
 
@@ -21,7 +20,6 @@ server.use((req, res, next) => {
 });
 server.use(healthCheckRoute);
 server.use(authentication);
-server.use(userRoute);
 server.use(dogs);
 
 

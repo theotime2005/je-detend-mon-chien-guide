@@ -1,7 +1,7 @@
-import { findUserById } from "../../identities-access-management/repositories/users-repository.js";
-import { logger } from "../logger.js";
+import { logger } from "../../shared/logger.js";
+import { findUserById } from "../repositories/users-repository.js";
 
-async function userController(req, res) {
+async function getUserInfosController(req, res) {
   try {
     const user = await findUserById(req.user.userId);
     if (!user) {
@@ -19,4 +19,4 @@ async function userController(req, res) {
   }
 }
 
-export default userController;
+export default getUserInfosController;
