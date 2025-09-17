@@ -11,6 +11,7 @@ async function getUserInfosController(req, res) {
       data: {
         firstname: user.firstname,
         lastname: user.lastname,
+        userType: user.userType,
       },
     });
   } catch (error) {

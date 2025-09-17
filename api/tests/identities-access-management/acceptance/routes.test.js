@@ -195,7 +195,7 @@ describe("Acceptance | Authentication | Register", () => {
   });
 
   describe("GET /api/authenticated", () => {
-    it("should return 200 http code, firstname and lastname", async () => {
+    it("should return 200 http code, firstname, lastname and userType", async () => {
       // given
       const user = await databaseBuilder.factory.buildUser();
       const token = await encodedToken({
@@ -213,6 +213,7 @@ describe("Acceptance | Authentication | Register", () => {
         data: {
           firstname: user.firstname,
           lastname: user.lastname,
+          userType: user.userType,
         },
       });
     });
