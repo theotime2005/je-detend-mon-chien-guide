@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { databaseBuilder } from "../../../db/database-builder/index.js";
 import { knex } from "../../../db/knex-database-connection.js";
 import server from "../../../server.js";
-import { encodedToken } from "../../../src/authentication/services/token-service.js";
+import { encodedToken } from "../../../src/identities-access-management/services/token-service.js";
 import { ERRORS, USER_TYPES } from "../../../src/shared/constants.js";
 import * as mailer from "../../../src/shared/services/emails/send-mail-service.js";
 

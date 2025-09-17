@@ -1,4 +1,4 @@
-import { decodedToken } from "../../authentication/services/token-service.js";
+import { decodedToken } from "../../identities-access-management/services/token-service.js";
 import { ERRORS } from "../constants.js";
 
 /**

@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { databaseBuilder } from "../../../db/database-builder/index.js";
 import server from "../../../server.js";
-import { encodedToken } from "../../../src/authentication/services/token-service.js";
+import { encodedToken } from "../../../src/identities-access-management/services/token-service.js";
 
 describe("Acceptance | Dogs | Dogs route", () => {
   describe("POST /api/dogs/", () => {

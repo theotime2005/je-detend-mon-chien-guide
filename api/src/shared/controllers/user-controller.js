@@ -1,5 +1,5 @@
+import { findUserById } from "../../identities-access-management/repositories/users-repository.js";
 import { logger } from "../logger.js";
-import { findUserById } from "../repositories/users-repository.js";
 
 async function userController(req, res) {
   try {

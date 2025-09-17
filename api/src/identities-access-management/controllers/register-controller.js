@@ -3,7 +3,7 @@ import Joi from "joi";
 import { USER_TYPES } from "../../shared/constants.js";
 import { logger } from "../../shared/logger.js";
 import { checkSchema } from "../../shared/middlewares/check-schema.js";
-import * as registerRepository from "../repositories/register-repository.js";
+import { createUser } from "../repositories/users-repository.js";
 import { createPassword } from "../services/password-service.js";
 import { sendMailToActivateUserService } from "../services/send-mail-to-activate-user-service.js";
 
@@ -15,12 +15,12 @@ const createUserSchema = Joi.object({
   userType: Joi.string().required().valid(...Object.values(USER_TYPES)),
 });
 
-export async function createUser(req, res) {
+export async function registerController(req, res) {
   if (!(await checkSchema(req, res, createUserSchema))) return;
   try {
     const { firstname, lastname, email, password, userType } = req.body;
     const hashedPassword = await createPassword(password);
-    const { id } = await registerRepository.createUser({
+    const { id } = await createUser({
       firstname,
       lastname,
       email,
