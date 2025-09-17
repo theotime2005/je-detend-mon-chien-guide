@@ -1,7 +1,7 @@
 import request from "supertest";
 import { describe, expect, it } from "vitest";
 
-import server from "../../../server.js";
+import server from "../../../../server.js";
 
 describe("Acceptance | Shared | Routes | Health check", () => {
 
