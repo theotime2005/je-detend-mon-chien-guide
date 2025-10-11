@@ -32,7 +32,7 @@
     "db:reset": "npm run db:prepare && npm run db:seed"
   },
   "dependencies": {
-    "@eslint/js": "^9.35.0",
+    "@eslint/js": "^9.37.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
